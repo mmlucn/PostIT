@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{5A3F07B9-1428-4003-89CD-C36C75096E9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostIT API", "API\PostIT API.csproj", "{5A3F07B9-1428-4003-89CD-C36C75096E9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostIT App", "PostIT App\PostIT App.csproj", "{E2761F92-51DB-4312-94A5-7A19E17EE683}"
 EndProject
