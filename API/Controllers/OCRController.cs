@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PostIT_API.Interfaces;
 using Tesseract;
 
 namespace PostIT_API.Controllers
@@ -8,24 +9,35 @@ namespace PostIT_API.Controllers
     [ApiController]
     public class OCRController : ControllerBase
     {
-        TesseractEngine tesseractEngine;
-        public OCRController()
+        IOCREngine engine;
+        public OCRController(IOCREngine ocrEngine)
         {
-          tesseractEngine = new TesseractEngine(@"./tessdata", "dan", EngineMode.Default);
+          engine = ocrEngine;
         }
 
-        [HttpPost]
-        public IActionResult Post(byte[] bytes)
-        {
-            using(var image = Pix.LoadFromMemory(bytes))
-            {
-                using(var page = tesseractEngine.Process(image))
-                {
-                    var text = page.GetText();
-                    return Ok(text);
-                }
-            }
+        //[HttpPost("Post")]
+        //public IActionResult Post(byte[] bytes)
+        //{
+        //    using(var image = Pix.LoadFromMemory(bytes))
+        //    {
+        //        using(var page = tesseractEngine.Process(image))
+        //        {
+        //            var text = page.GetText();
+        //            return Ok(text);
+        //        }
+        //    }
+        //}
 
+        [HttpPost("PostTest")]
+        public async Task<IActionResult> PostTest(IFormFile file)
+        {
+            var fileStream = file.OpenReadStream();
+            MemoryStream stream = new MemoryStream();
+            await file.CopyToAsync(stream);
+
+            var text = engine.GetText(stream.ToArray());
+
+            return Ok(text);
         }
 
     }

@@ -1,6 +1,11 @@
+using PostIT_API.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+//builder.Services.AddSingleton<IOCREngine>(new TessOCR());
+builder.Services.AddSingleton<IOCREngine>(new GoogleOCR());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
