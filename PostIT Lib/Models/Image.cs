@@ -8,5 +8,7 @@ namespace PostIT_Lib.Models
 {
     internal class Image
     {
+        public int Id { get; set; }
+        public byte[] Data { get; set; }
     }
 }
