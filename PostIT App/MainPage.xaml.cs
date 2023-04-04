@@ -23,16 +23,40 @@
                 //    status = await Permissions.RequestAsync<Permissions.Camera>();
                 //}
             }
+            
 
-
-            var photoResult = await MediaPicker.CapturePhotoAsync();
+            var photoResult = await MediaPicker.PickPhotoAsync();
 
             if (photoResult != null)
             {
                 var photoStream = await photoResult.OpenReadAsync();
 
-                //ImgBox.Source = ImageSource.FromStream(() => photoStream);
+                ImgBox.Source = ImageSource.FromStream(() => photoStream);
             }
+        }
+
+        private async void CounterBtn2_Clicked(object sender, EventArgs e)
+        {
+            //PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+
+            //if (status != PermissionStatus.Granted)
+            //{
+            //    if (Permissions.ShouldShowRationale<Permissions.Camera>())
+            //    {
+            //        await DisplayAlert("Need camera permissions", "suck it", "Ok");
+            //        status = await Permissions.RequestAsync<Permissions.Camera>();
+            //    }
+            //}
+            var photoResult = await MediaPicker.CapturePhotoAsync();
+            
+
+            if (photoResult != null)
+            {
+                var photoStream = await photoResult.OpenReadAsync();
+
+                ImgBox.Source = ImageSource.FromStream(() => photoStream);
+            }
+
         }
     }
 }

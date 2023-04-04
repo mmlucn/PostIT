@@ -10,7 +10,7 @@ namespace PostIT_Lib.Models
     {
         public int Id { get; set; }
         public string Result { get; set; }
-        public int ImageId { get; set; }
+        public Image Image { get; set; }
 
     }
 }

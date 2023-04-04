@@ -10,6 +10,7 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
+            
 
             <Label
                 Text="{Binding MyStringTest}"
@@ -21,14 +22,23 @@
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
+                FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Button
+            <Image
+                x:Name="ImgBox"/>
+
+                <Button
                 x:Name="CounterBtn"
-                Text="Click me"
+                Text="fotolager"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+            <Button
+                x:Name="CounterBtn2"
+                Text="Camera"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="CounterBtn2_Clicked"
                 HorizontalOptions="Center" />
             
         </VerticalStackLayout>
