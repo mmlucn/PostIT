@@ -15,21 +15,14 @@ namespace PostIT_API.Controllers
           engine = ocrEngine;
         }
 
-        //[HttpPost("Post")]
-        //public IActionResult Post(byte[] bytes)
-        //{
-        //    using(var image = Pix.LoadFromMemory(bytes))
-        //    {
-        //        using(var page = tesseractEngine.Process(image))
-        //        {
-        //            var text = page.GetText();
-        //            return Ok(text);
-        //        }
-        //    }
-        //}
+        [HttpPost("Post")]
+        public ActionResult<string> Post(byte[] bytes)
+        {
+            return Ok(engine.GetText(bytes));
+        }
 
         [HttpPost("PostTest")]
-        public async Task<IActionResult> PostTest(IFormFile file)
+        public async Task<ActionResult<string>> PostTest(IFormFile file)
         {
             var fileStream = file.OpenReadStream();
             MemoryStream stream = new MemoryStream();

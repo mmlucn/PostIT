@@ -1,8 +1,10 @@
+using PostIT_API.EF;
 using PostIT_API.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<PostITContext>();
 
 //builder.Services.AddSingleton<IOCREngine>(new TessOCR());
 builder.Services.AddSingleton<IOCREngine>(new GoogleOCR());

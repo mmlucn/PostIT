@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PostIT_App.MainPage"
              xmlns:local="clr-namespace:PostIT_App"
+             xmlns:models="clr-namespace:PostIT_Lib.Models"
              x:DataType="local:MainPage">
 
     <ScrollView>
@@ -12,17 +13,20 @@
             VerticalOptions="Center">
 
             <Label
-                Text="{Binding MyStringTest}"
+                Text="{Binding PostItNote.Text}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Welcome to .NET Multi-platform App UI"
+                Text="{Binding PostItNote.Title}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
+
+            <Entry
+                Text="{Binding PostItNote.Category}"/>
 
             <Button
                 x:Name="CounterBtn"
