@@ -31,5 +31,11 @@ namespace PostIT_App
         {
            
         }
+
+        private void NewNoteBtn_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PostItNotePage());
+
+        }
     }
 }
