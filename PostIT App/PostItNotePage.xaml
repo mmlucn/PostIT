@@ -46,6 +46,7 @@
             MaximumWidthRequest="250"
             
             
+            
             />
         <Label
             Text="Category"
@@ -59,6 +60,12 @@
             HorizontalOptions="Start"
             VerticalOptions="Start"
             MaxLength="30"
+            />
+
+        <Button
+            x:Name="saveNote"
+            Clicked="saveNote_Clicked"
+            
             />
     </VerticalStackLayout>
 </ContentPage>

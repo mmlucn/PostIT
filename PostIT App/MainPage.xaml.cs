@@ -14,10 +14,11 @@ namespace PostIT_App
             Id = 0,
             Text = "PostIt Note text test",
             Title = "PostIt note title test",
-            UserId = 0
+            Image = null
         };
+        HttpClient client = new HttpClient();
 
-        int count = 0;
+        
 
         public string MyStringTest { get; set; } = "Hello there";
 
@@ -34,7 +35,7 @@ namespace PostIT_App
 
         private void NewNoteBtn_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PostItNotePage());
+            Navigation.PushAsync(new PostItNotePage(client));
 
         }
     }

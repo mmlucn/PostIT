@@ -13,7 +13,7 @@ namespace PostIT_API.Controllers
         public PostIT2Controller(PostITContext context)
         {
             _context = context;
-            var token = HttpContext.Request.Headers["Authorization"];
+            //var token = HttpContext.Request.Headers["Authorization"];
         }
 
         [HttpGet]

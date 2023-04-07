@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls.Hosting;
 
 namespace PostIT_App
 {
@@ -7,6 +9,15 @@ namespace PostIT_App
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+            
+            builder.Services.AddSingleton<HttpClient>();
+            var client = builder.Services.AddHttpClient("client", config =>
+            {
+                var baseUrl = new Uri("https://localhost:7081/");
+                config.BaseAddress = baseUrl;
+            });
+            
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
