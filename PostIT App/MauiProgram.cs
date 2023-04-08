@@ -11,10 +11,11 @@ namespace PostIT_App
             var builder = MauiApp.CreateBuilder();
             
             builder.Services.AddSingleton<HttpClient>();
-            var client = builder.Services.AddHttpClient("client", config =>
+            var client = builder.Services.AddHttpClient("client", client =>
             {
                 var baseUrl = new Uri("https://localhost:7081/");
-                config.BaseAddress = baseUrl;
+                client.BaseAddress = baseUrl;
+                
             });
             
 
