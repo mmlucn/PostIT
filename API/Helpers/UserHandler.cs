@@ -1,5 +1,5 @@
 ﻿using PostIT_API.EF;
-using PostIT_Lib.Models;
+using MauiLib.Models;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace PostIT_API.Helpers

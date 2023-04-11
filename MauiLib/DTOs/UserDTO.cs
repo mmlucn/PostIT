@@ -1,4 +1,4 @@
-﻿namespace PostIT_API.DTOs
+﻿namespace MauiLib.DTOs
 {
     public class UserDTO
     {

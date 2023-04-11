@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PostIT_Lib.Models;
+using MauiLib.Models;
 
 namespace PostIT_API.EF
 {

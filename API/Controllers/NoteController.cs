@@ -3,18 +3,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostIT_API.EF;
 using PostIT_API.Helpers;
-using PostIT_Lib.Models;
+using MauiLib.Models;
+using MauiLib.DTOs;
 
 namespace PostIT_API.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class PostIT2Controller : ControllerBase
+    public class NoteController : ControllerBase
     {
         PostITContext _context;
-        HttpContext _httpContext;
-        public PostIT2Controller(PostITContext context)
+        HttpContext? _httpContext;
+        public NoteController(PostITContext context)
         {
             _context = context;
         }
@@ -36,15 +37,15 @@ namespace PostIT_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(PostItNote postItNote)
+        public async Task<ActionResult> Post(PostItNoteDTO postItNote)
         {
             var userHandler = new UserHandler(_context);
             var user = userHandler.GetUser(HttpContext);
             if (user != null)
             {
-                postItNote.User = user;
-                _context.Add<PostItNote>(postItNote);
-                await _context.SaveChangesAsync();
+                //postItNote.User = user;
+                //_context.Add<PostItNote>(postItNote);
+                //await _context.SaveChangesAsync();
                 return Ok();
             }
             return BadRequest();

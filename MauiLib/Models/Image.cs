@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PostIT_Lib.Models
+namespace MauiLib.Models
 {
-    public class OCRResult
+    public class Image
     {
         public int Id { get; set; }
-        public string Result { get; set; }
-        public Image Image { get; set; }
-
+        public byte[] Data { get; set; }
     }
 }

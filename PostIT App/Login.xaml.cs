@@ -5,6 +5,8 @@ using PostIT_Lib.Models;
 using System.Net.Http.Json;
 using System.Security.Cryptography.X509Certificates;
 using ServiceProvider = PostIT_App.Helpers.ServiceProvider;
+using MauiLib.Models;
+using MauiLib.DTOs;
 
 namespace PostIT_App
 {
