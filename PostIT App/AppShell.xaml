@@ -3,12 +3,23 @@
     x:Class="PostIT_App.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:PostIT_App"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:pages="clr-namespace:PostIT_App.Pages">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <Tab Title="Note" Icon="note.svg">
+        <ShellContent
+            Title="My notes"
+            ContentTemplate="{DataTemplate pages:MyNotesPage}" />
+    </Tab>
+    
+    <Tab Title="New" Icon="plus.svg">
+        <ShellContent
+            Title="Add new note"
+            ContentTemplate="{DataTemplate pages:PostItNotePage}" />
+    </Tab>
+        
+    <Tab Title="Settings" Icon="gear.svg">
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate pages:SettingsPage}" />
+    </Tab>
 </Shell>

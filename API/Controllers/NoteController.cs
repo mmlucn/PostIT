@@ -43,9 +43,16 @@ namespace PostIT_API.Controllers
             var user = userHandler.GetUser(HttpContext);
             if (user != null)
             {
-                //postItNote.User = user;
-                //_context.Add<PostItNote>(postItNote);
-                //await _context.SaveChangesAsync();
+                var addedNote = _context.Add<PostItNote>(new PostItNote
+                {
+                    Category = postItNote.Category,
+                    Image = postItNote.Image,
+                    Created = DateTime.UtcNow,
+                    Text = postItNote.Text,
+                    Title = postItNote.Title,
+                    User = user,
+                });
+                await _context.SaveChangesAsync();
                 return Ok();
             }
             return BadRequest();

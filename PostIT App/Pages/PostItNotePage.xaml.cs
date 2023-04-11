@@ -1,4 +1,4 @@
-namespace PostIT_App;
+namespace PostIT_App.Pages;
 
 using Microsoft.Maui.Controls;
 using PostIT_Lib.Models;
@@ -25,7 +25,7 @@ public partial class PostItNotePage : ContentPage
     {
         try
         {
-            var res = await _httpClient.PostAsJsonAsync<PostItNote>($"api/PostIT2?postItNote=", new PostItNote()
+            var res = await _httpClient.PostAsJsonAsync<PostItNote>($"api/PostIT2", new PostItNote()
             {
                 Category = CategoryEntry.Text,
                 Text = NoteText.Text,
