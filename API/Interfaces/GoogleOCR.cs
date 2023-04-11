@@ -30,12 +30,12 @@ namespace PostIT_API.Interfaces
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            foreach (var text in textAnnotation)
-            {
-                stringBuilder.Append(text.Description);
-            }
+            //foreach (var text in textAnnotation)
+            //{
+            //    stringBuilder.Append(text.Description);
+            //}
 
-            return stringBuilder.ToString();
+            return textAnnotation.First().Description ?? string.Empty;
         }
 
         public void Start()

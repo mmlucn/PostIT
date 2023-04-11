@@ -65,10 +65,17 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="PostItNotePage.xaml">
+	  <Compile Update="Login.xaml.cs">
+	    <DependentUpon>Login.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\PostItNotePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

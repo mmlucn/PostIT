@@ -7,4 +7,13 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.STORAGE_INTERNAL" />
+  <uses-permission android:name="android.media.action.IMAGE_CAPTURE" />
+  <uses-feature android:name="android.media.action.IMAGE_CAPTURE" />
+
+
+  <queries>
+    <intent>
+      <action android:name="android.media.action.IMAGE_CAPTURE" />
+    </intent>
+  </queries>
 </manifest>

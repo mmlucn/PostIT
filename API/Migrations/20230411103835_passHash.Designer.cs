@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PostIT_API.EF;
 
@@ -11,9 +12,11 @@ using PostIT_API.EF;
 namespace PostIT_API.Migrations
 {
     [DbContext(typeof(PostITContext))]
-    partial class PostITContextModelSnapshot : ModelSnapshot
+    [Migration("20230411103835_passHash")]
+    partial class passHash
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +68,7 @@ namespace PostIT_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -116,15 +119,16 @@ namespace PostIT_API.Migrations
                         .WithMany()
                         .HasForeignKey("ImageId");
 
-                    b.HasOne("PostIT_Lib.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("PostIT_Lib.Models.User", null)
+                        .WithMany("PostItNotes")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Image");
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("PostIT_Lib.Models.User", b =>
+                {
+                    b.Navigation("PostItNotes");
                 });
 #pragma warning restore 612, 618
         }

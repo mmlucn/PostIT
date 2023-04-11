@@ -1,19 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostIT_API.EF;
+using PostIT_API.Helpers;
 using PostIT_Lib.Models;
 
 namespace PostIT_API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostIT2Controller : ControllerBase
     {
         PostITContext _context;
+        HttpContext _httpContext;
         public PostIT2Controller(PostITContext context)
         {
             _context = context;
-            //var token = HttpContext.Request.Headers["Authorization"];
         }
 
         [HttpGet]
@@ -26,17 +29,25 @@ namespace PostIT_API.Controllers
         [HttpGet("GetAll")]
         public ActionResult<List<PostItNote>> GetAll()
         {
-            int userid = 0;
-            var found = _context.User.Where(e => e.Id == userid).First().PostItNotes;
-            return Ok(found);
+            //int userid = 0;
+            //var found = _context.User.Where(e => e.Id == userid).First().PostItNotes;
+            //return Ok(found);
+            return Ok(null);
         }
 
         [HttpPost]
         public async Task<ActionResult> Post(PostItNote postItNote)
         {
-            _context.Add<PostItNote>(postItNote);
-            await _context.SaveChangesAsync();
-            return Ok();
+            var userHandler = new UserHandler(_context);
+            var user = userHandler.GetUser(HttpContext);
+            if (user != null)
+            {
+                postItNote.User = user;
+                _context.Add<PostItNote>(postItNote);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            return BadRequest();
         }
 
         //[HttpPut]

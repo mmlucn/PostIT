@@ -12,6 +12,7 @@ namespace PostIT_API.EF
 
         //public DbSet<PostItNote> PostItNote { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<PostItNote> PostItNote { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

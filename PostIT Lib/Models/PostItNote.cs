@@ -14,5 +14,6 @@ namespace PostIT_Lib.Models
         public DateTime Created { get; set; }
         public string Category { get; set; }
         public Image? Image { get; set; }
+        public User User { get; set; }
     }
 }
