@@ -35,6 +35,7 @@
             Keyboard="Text"
             Text="{Binding NoteText}"
             HorizontalOptions="Start"
+            HeightRequest="200"
             Placeholder="Write the text of your postit note"
             />
 

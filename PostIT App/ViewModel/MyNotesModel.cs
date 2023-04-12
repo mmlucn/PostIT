@@ -30,9 +30,9 @@ namespace PostIT_App.ViewModel
         List<PostItNoteDTO> notes;
 
         [RelayCommand]
-        private async Task DeleteNote(PostItNoteDTO note)
+        private void Delete(PostItNoteDTO note)
         {
-
+            AppShell.Current.DisplayAlert("Hi", "HIHI", "OK");
         }
     }
 }

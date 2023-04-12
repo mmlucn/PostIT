@@ -1,13 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiLib.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PostIT_App.ViewModel
 {
@@ -36,9 +30,11 @@ namespace PostIT_App.ViewModel
 
             if (action == "Take Photo")
             {
-                var photo = await MediaPicker.CapturePhotoAsync();
+                var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions() { Title = "Take photo"});
+
                 var stream = new MemoryStream();
                 photo.OpenReadAsync().Result.CopyTo(stream);
+
                 // Do something with the photo
                 var res = _httpClient.PostAsJsonAsync($"api/OCR/Post?bytes=", stream.ToArray());
                 var text = await res.Result.Content.ReadAsStringAsync();

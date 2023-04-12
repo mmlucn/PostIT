@@ -2,20 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PostIT_App.Pages.MyNotesPage"
-             xmlns:models="clr-namespace:MauiLib.Models;assembly=MauiLib"
+             xmlns:models="clr-namespace:MauiLib.DTOs;assembly=MauiLib"
              xmlns:viewmodel="clr-namespace:PostIT_App.ViewModel"
              x:DataType="viewmodel:MyNotesModel"
              Title="My Notes">
 
 
-    <VerticalStackLayout x:DataType="viewmodel:MyNotesModel">
+    <VerticalStackLayout>
         <CollectionView ItemsSource="{Binding Notes}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:PostItNote">
+                <DataTemplate x:DataType="models:PostItNoteDTO">
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItem Text="Delete"
-                                       BackgroundColor="Red"/>
+                                       BackgroundColor="Red"
+                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DeleteCommand}"
+                                       CommandParameter="{Binding}"/>
                         </SwipeView.RightItems>
                         <Grid Padding="0,5">
                             <Grid.ColumnDefinitions>

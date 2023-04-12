@@ -5,19 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:PostIT_App.Pages">
 
-    <Tab Title="Note" Icon="note.svg">
+    <Tab Title="Note" >
         <ShellContent
             Title="My notes"
             ContentTemplate="{DataTemplate pages:MyNotesPage}" />
     </Tab>
     
-    <Tab Title="New" Icon="plus.svg">
+    <Tab Title="New" >
         <ShellContent
             Title="Add new note"
             ContentTemplate="{DataTemplate pages:PostItNotePage}" />
     </Tab>
-        
-    <Tab Title="Settings" Icon="gear.svg">
+
+    <Tab Title="Settings">
         <ShellContent
             Title="Settings"
             ContentTemplate="{DataTemplate pages:SettingsPage}" />
