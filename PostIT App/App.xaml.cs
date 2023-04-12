@@ -1,4 +1,7 @@
-﻿namespace PostIT_App
+﻿using PostIT_App.Helpers;
+using ServiceProvider = PostIT_App.Helpers.ServiceProvider;
+
+namespace PostIT_App
 {
     public partial class App : Application
     {
@@ -6,7 +9,7 @@
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = ServiceProvider.GetService<LoginPage>();
         }
     }
 }

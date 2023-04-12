@@ -5,6 +5,7 @@ using PostIT_API.EF;
 using PostIT_API.Helpers;
 using MauiLib.Models;
 using MauiLib.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace PostIT_API.Controllers
 {
@@ -20,20 +21,35 @@ namespace PostIT_API.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var found = _context.Find<PostItNote>(id);
             return Ok(found);
         }
 
-        [HttpGet("GetAll")]
-        public ActionResult<List<PostItNote>> GetAll()
+        [HttpGet()]
+        public async Task<ActionResult<List<PostItNoteDTO>>> Get()
         {
-            //int userid = 0;
-            //var found = _context.User.Where(e => e.Id == userid).First().PostItNotes;
-            //return Ok(found);
-            return Ok(null);
+            var user = new UserHandler(_context).GetUser(HttpContext);
+            if (user != null)
+            {
+                var notes = _context.PostItNote.Include(c => c.Image).Where(u => user == u.User).ToList();
+                var notesToReturn = new List<PostItNoteDTO>();
+                foreach (var note in notes)
+                {
+                    var noteDTO = new PostItNoteDTO()
+                    {
+                        Category = note.Category,
+                        Image = new ImageDTO() { Data = note.Image?.Data },
+                        Text = note.Text,
+                        Title = note.Title,
+                    };
+                    notesToReturn.Add(noteDTO);
+                }
+                return Ok(notesToReturn);
+            }
+            return BadRequest(string.Empty);
         }
 
         [HttpPost]
@@ -46,7 +62,7 @@ namespace PostIT_API.Controllers
                 var addedNote = _context.Add<PostItNote>(new PostItNote
                 {
                     Category = postItNote.Category,
-                    Image = postItNote.Image,
+                    Image = postItNote.Image == null ? null : new Image(postItNote.Image.Data),
                     Created = DateTime.UtcNow,
                     Text = postItNote.Text,
                     Title = postItNote.Title,

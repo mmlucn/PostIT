@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Hosting;
+using PostIT_App.Pages;
+using PostIT_App.ViewModel;
 
 namespace PostIT_App
 {
@@ -26,6 +28,17 @@ namespace PostIT_App
 		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginModel>();
+
+            builder.Services.AddSingleton<MyNotesPage>();
+            builder.Services.AddSingleton<MyNotesModel>();
+
+            builder.Services.AddSingleton<PostItNotePage>();
+            builder.Services.AddSingleton<PostItNoteModel>();
+
+            builder.Services.AddSingleton<SettingsPage>();
+            builder.Services.AddSingleton<SettingsModel>();
             return builder.Build();
         }
     }

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PostIT_App.LoginPage"
              xmlns:local="clr-namespace:PostIT_App"
-             xmlns:models="clr-namespace:PostIT_Lib.Models"
-             x:DataType="local:LoginPage">
+             xmlns:viewmodels="clr-namespace:PostIT_App.ViewModel"
+             x:DataType="viewmodels:LoginModel">
 
     <ScrollView>
         <VerticalStackLayout
@@ -19,17 +19,17 @@
                 FontAttributes="Bold"/>
 
             <Entry
-                x:Name="UsernameEntry"
+                Text="{Binding UsernameEntry}"
                 Placeholder="Username"/>
 
             <Entry
-                x:Name="PasswordEntry"
+                Text="{Binding PasswordEntry}"
                 IsPassword="True"
                 Placeholder="Password"/>
 
             <Button
                 Text="Login"
-                Clicked="Button_Clicked"/>
+                Command="{Binding LoginCommand}"/>
 
         </VerticalStackLayout>
     </ScrollView>

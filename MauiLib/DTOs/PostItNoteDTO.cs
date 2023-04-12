@@ -12,6 +12,6 @@ namespace MauiLib.DTOs
         public string Text { get; set; }
         public string Title { get; set; }
         public string? Category { get; set; } = null;
-        public Image? Image { get; set; } = null;
+        public ImageDTO? Image { get; set; } = null;
     }
 }

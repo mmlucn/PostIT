@@ -1,16 +1,17 @@
 ﻿using PostIT_API.EF;
 using MauiLib.Models;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.CompilerServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PostIT_API.Helpers
 {
     public class UserHandler
     {
-        PostITContext _context;
+        public PostITContext _context { get; set; }
         public UserHandler(PostITContext context) 
         {
             _context = context;
-
         }
         public User GetUser(HttpContext httpContext)
         {
