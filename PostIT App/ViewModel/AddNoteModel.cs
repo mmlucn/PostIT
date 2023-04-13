@@ -5,11 +5,11 @@ using System.Net.Http.Json;
 
 namespace PostIT_App.ViewModel
 {
-    public partial class PostItNoteModel : ObservableObject
+    public partial class AddNoteModel : ObservableObject
     {
         HttpClient _httpClient;
         ImageDTO _imageDTO = null;
-        public PostItNoteModel(HttpClient httpClient)
+        public AddNoteModel(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

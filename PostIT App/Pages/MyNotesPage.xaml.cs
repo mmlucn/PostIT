@@ -9,10 +9,10 @@ namespace PostIT_App.Pages;
 public partial class MyNotesPage : ContentPage
 {
     public MyNotesPage(MyNotesModel myNotesModel)
-	{
-		InitializeComponent();
-		BindingContext = myNotesModel;
-	}
+    {
+        InitializeComponent();
+        BindingContext = myNotesModel;
+    }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {

@@ -11,11 +11,5 @@ namespace PostIT_App
             InitializeComponent();
             BindingContext = loginModel;
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new RegisterPage());
-            
-        }
     }
 }

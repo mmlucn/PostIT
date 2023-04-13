@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiLib.DTOs;
+using PostIT_App.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,15 +38,26 @@ namespace PostIT_App.ViewModel
                     {
                         var token = await res.Content.ReadAsStringAsync();
                         _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                        App.Current.MainPage = new AppShell();
+                        Application.Current.MainPage = new AppShell();
+                    }
+                    else
+                    {
+                        await Toast.Make("Something went wrong").Show();
                     }
                 }
                 catch (Exception ex)
                 {
-                    await AppShell.Current.DisplayAlert("Error", ex.Message, "Ok");
-                    throw;
+                    
+                    await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
                 }
             }
+        }
+
+        [RelayCommand]
+        private async Task Reg()
+        {
+            //App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<RegisterPage>();
+            await Shell.Current.GoToAsync("register");
         }
     }
 }

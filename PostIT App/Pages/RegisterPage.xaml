@@ -7,54 +7,55 @@
              xmlns:viewmodels="clr-namespace:PostIT_App.ViewModel"
              x:DataType="viewmodels:RegisterModel"
              >
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
+    <VerticalStackLayout Margin="5, 15">
         <Label
             Text="Register"
             FontSize="Large"
             FontAttributes="Bold"
             />
+
+        <Label Text="Firstname"/>
         <Entry
             Text="{Binding FirstNameEntry}"
             Placeholder="First Name"
             />
+
+        <Label Text="Lastname"/>
         <Entry
             Text="{Binding LastNameEntry}"
             Placeholder="Last name"
             />
+
+        <Label Text="Email"/>
         <Entry
             Text="{Binding EmailEntry}"
             Placeholder="Email"
-            
             />
+
+        <Label Text="Username"/>
         <Entry
             Text="{Binding UserNameEntry}"
             Placeholder="Username"
             />
+
+        <Label Text="Password"/>
         <Entry
             Text="{Binding PasswordEntry}"
             IsPassword="True"
             Placeholder="Password"
-            
             />
 
+        <Label Text="Confirm password"/>
         <Entry
             Text="{Binding ConfirmPasswordEntry}"
             IsPassword="True"
             Placeholder="Confirm Password"
-            
             />
 
         <Button
                 Text="Register"
                 Command="{Binding RegisterCommand}"
                 />
-
-
 
     </VerticalStackLayout>
 </ContentPage>

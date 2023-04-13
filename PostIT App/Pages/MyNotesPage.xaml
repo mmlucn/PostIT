@@ -7,33 +7,34 @@
              x:DataType="viewmodel:MyNotesModel"
              Title="My Notes">
 
-
-    <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding Notes}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:PostItNoteDTO">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItem Text="Delete"
+    <RefreshView Command="{Binding RefreshNotesCommand}" IsRefreshing="{Binding IsRefreshingNotes}">
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Notes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:PostItNoteDTO">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem Text="Delete"
                                        BackgroundColor="Red"
                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DeleteCommand}"
                                        CommandParameter="{Binding}"/>
-                        </SwipeView.RightItems>
-                        <Grid Padding="0,5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding Title}"/>
-                            <Label Grid.Column="1" Text="{Binding Category}" />
-                            <Label Grid.Column="2" Text="{Binding Text}" />
-                            <Image Grid.Column="3" Source="{Binding Image.AsBytes}"/>
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                            </SwipeView.RightItems>
+                            <Grid Padding="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Title}"/>
+                                <Label Grid.Column="1" Text="{Binding Category}" />
+                                <Label Grid.Column="2" Text="{Binding Text}" />
+                                <Image Grid.Column="3" Source="{Binding Image.AsBytes}"/>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

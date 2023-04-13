@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,17 +17,15 @@ namespace PostIT_App.ViewModel
     public partial class RegisterModel : ObservableObject
     {
         private HttpClient _httpClient;
-        
+
 
         public RegisterModel(HttpClient httpClient)
         {
-            _httpClient= httpClient;
-            
-
+            _httpClient = httpClient;
         }
 
         [ObservableProperty]
-        string firstNameEntry = "h";
+        string firstNameEntry = "";
         [ObservableProperty]
         string lastNameEntry = "";
         [ObservableProperty]
@@ -50,8 +49,9 @@ namespace PostIT_App.ViewModel
                     var res = await _httpClient.PostAsJsonAsync("api/Token/Register", new UserDTO(FirstNameEntry, LastNameEntry, EmailEntry, UserNameEntry, PasswordEntry));
                     if (res.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-
-                        
+                        //AppShell er null her. Den bliver først initialiseret når man har logget ind.. Det burde nok laves anderledes
+                        //await AppShell.Current.DisplayAlert("Welcome!", "Congrats!\nYou have now been registered!", "Ok");
+                        App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<LoginPage>();
                     }
                 }
                 catch (Exception ex)

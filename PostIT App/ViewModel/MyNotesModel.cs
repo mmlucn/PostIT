@@ -14,25 +14,39 @@ namespace PostIT_App.ViewModel
     public partial class MyNotesModel : ObservableObject
     {
         HttpClient _httpClient;
-        public MyNotesModel(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-            Notes = new List<PostItNoteDTO>();
-        }
-
-        public async Task OnNavigatedTo()
-        {
-            var res = await _httpClient.GetFromJsonAsync<List<PostItNoteDTO>>("api/Note");
-            Notes = res;
-        }
 
         [ObservableProperty]
         List<PostItNoteDTO> notes;
 
-        [RelayCommand]
-        private void Delete(PostItNoteDTO note)
+        [ObservableProperty]
+        bool isRefreshingNotes = false;
+
+        public MyNotesModel(HttpClient httpClient)
         {
-            AppShell.Current.DisplayAlert("Hi", "HIHI", "OK");
+            _httpClient = httpClient;
+        }
+
+        public async Task OnNavigatedTo()
+        {
+            IsRefreshingNotes = true;
+            var res = await _httpClient.GetFromJsonAsync<List<PostItNoteDTO>>("api/Note");
+            Notes = res;
+            IsRefreshingNotes = false;
+        }
+
+        [RelayCommand]
+        public async Task RefreshNotes()
+        {
+            IsRefreshingNotes = true;
+            var res = await _httpClient.GetFromJsonAsync<List<PostItNoteDTO>>("api/Note");
+            Notes = res;
+            IsRefreshingNotes = false;
+        }
+
+        [RelayCommand]
+        private async void Delete(PostItNoteDTO note)
+        {
+            await AppShell.Current.DisplayAlert("Hi", "HIHI", "OK");
         }
     }
 }

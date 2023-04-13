@@ -8,9 +8,9 @@ using System.IdentityModel.Tokens.Jwt;
 using MauiLib.DTOs;
 using PostIT_App.ViewModel;
 
-public partial class PostItNotePage : ContentPage
+public partial class AddNotePage : ContentPage
 {
-    public PostItNotePage(PostItNoteModel postItNoteModel)
+    public AddNotePage(MyNotesModel postItNoteModel)
     {
         InitializeComponent();
         BindingContext = postItNoteModel;

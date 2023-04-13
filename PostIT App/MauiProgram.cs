@@ -3,6 +3,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls.Hosting;
 using PostIT_App.Pages;
 using PostIT_App.ViewModel;
+using CommunityToolkit.Maui;
 
 namespace PostIT_App
 {
@@ -14,10 +15,11 @@ namespace PostIT_App
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://cz6tk78q-7081.euw.devtunnels.ms/");
             builder.Services.AddSingleton<HttpClient>(httpClient);
-            
+
 
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -31,11 +33,14 @@ namespace PostIT_App
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<LoginModel>();
 
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<RegisterModel>();
+
             builder.Services.AddSingleton<MyNotesPage>();
             builder.Services.AddSingleton<MyNotesModel>();
 
-            builder.Services.AddSingleton<PostItNotePage>();
-            builder.Services.AddSingleton<PostItNoteModel>();
+            builder.Services.AddSingleton<AddNotePage>();
+            builder.Services.AddSingleton<AddNoteModel>();
 
             builder.Services.AddSingleton<SettingsPage>();
             builder.Services.AddSingleton<SettingsModel>();

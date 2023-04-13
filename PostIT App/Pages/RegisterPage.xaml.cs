@@ -8,8 +8,6 @@ public partial class RegisterPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext= registermodel;
-        
     }
-	
 	
 }

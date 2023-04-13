@@ -1,4 +1,5 @@
 ﻿using PostIT_App.Helpers;
+using PostIT_App.Pages;
 using ServiceProvider = PostIT_App.Helpers.ServiceProvider;
 
 namespace PostIT_App
@@ -8,7 +9,11 @@ namespace PostIT_App
         public App()
         {
             InitializeComponent();
-
+            Routing.RegisterRoute("login", typeof(LoginPage));
+            Routing.RegisterRoute("mynotes", typeof(MyNotesPage));
+            Routing.RegisterRoute("addnote", typeof(AddNotePage));
+            Routing.RegisterRoute("register", typeof(RegisterPage));
+            Routing.RegisterRoute("settings", typeof(SettingsPage));
             MainPage = ServiceProvider.GetService<LoginPage>();
         }
     }

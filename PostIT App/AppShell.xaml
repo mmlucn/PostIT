@@ -8,18 +8,21 @@
     <Tab Title="Note" >
         <ShellContent
             Title="My notes"
+            Route="mynotes"
             ContentTemplate="{DataTemplate pages:MyNotesPage}" />
     </Tab>
     
     <Tab Title="New" >
         <ShellContent
             Title="Add new note"
-            ContentTemplate="{DataTemplate pages:PostItNotePage}" />
+            Route="addnote"
+            ContentTemplate="{DataTemplate pages:AddNotePage}" />
     </Tab>
 
     <Tab Title="Settings">
         <ShellContent
             Title="Settings"
+            Route="settings"
             ContentTemplate="{DataTemplate pages:SettingsPage}" />
     </Tab>
 </Shell>

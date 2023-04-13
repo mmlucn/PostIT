@@ -29,7 +29,7 @@ namespace PostIT_API.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<List<PostItNoteDTO>>> Get()
+        public ActionResult<List<PostItNoteDTO>> Get()
         {
             var user = new UserHandler(_context).GetUser(HttpContext);
             if (user != null)
