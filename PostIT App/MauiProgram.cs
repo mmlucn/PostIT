@@ -44,6 +44,10 @@ namespace PostIT_App
 
             builder.Services.AddSingleton<SettingsPage>();
             builder.Services.AddTransient<SettingsModel>();
+
+            builder.Services.AddSingleton<DetailsPage>();
+            builder.Services.AddTransient<DetailsPageModel>();
+
             return builder.Build();
         }
     }

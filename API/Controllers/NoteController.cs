@@ -24,8 +24,23 @@ namespace PostIT_API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var found = _context.Find<PostItNote>(id);
-            return Ok(found);
+            var user = new UserHandler(_context).GetUser(HttpContext);
+            if (user != null)
+            {
+                var note = _context.PostItNote.Include(c => c.Image).Where(u => user == u.User).Where(p => p.Id == id).First();
+
+                var noteDTO = new PostItNoteDTO()
+                {
+                    Id = note.Id,
+                    Category = note.Category,
+                    Image = new ImageDTO() { Data = note.Image?.Data },
+                    Text = note.Text,
+                    Title = note.Title,
+                };
+
+                return Ok(noteDTO);
+            }
+            return BadRequest(string.Empty);
         }
 
         [HttpGet()]
@@ -40,6 +55,7 @@ namespace PostIT_API.Controllers
                 {
                     var noteDTO = new PostItNoteDTO()
                     {
+                        Id = note.Id,
                         Category = note.Category,
                         Image = new ImageDTO() { Data = note.Image?.Data },
                         Text = note.Text,

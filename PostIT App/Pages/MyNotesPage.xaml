@@ -17,15 +17,21 @@
             <CollectionView ItemsSource="{Binding Notes}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:PostItNoteDTO">
-                        
                         <SwipeView>
+
                             <SwipeView.RightItems>
                                 <SwipeItem Text="Delete"
                                        BackgroundColor="Red"
                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DeleteCommand}"
                                        CommandParameter="{Binding}"/>
                             </SwipeView.RightItems>
-                            
+
+                            <SwipeView.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DetailsCommand}"
+                                    CommandParameter="{Binding Id}"/>
+                            </SwipeView.GestureRecognizers>
+
                             <Grid Padding="0,5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -38,8 +44,8 @@
                                 <Label Grid.Column="2" Text="{Binding Text}" />
                                 <Image Grid.Column="3" Source="{Binding Image.Data, Converter={StaticResource base64Converter}}"/>
                             </Grid>
-                            </SwipeView>
-                        
+
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

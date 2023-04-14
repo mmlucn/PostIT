@@ -59,9 +59,9 @@ namespace PostIT_App.ViewModel
         }
 
         [RelayCommand]
-        private async Task Details(PostItNoteDTO note)
+        private async Task Details(int id)
         {
-            App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<DetailsPage>();
+            await AppShell.Current.GoToAsync($"detailspage?id={id}");
         }
     }
 }

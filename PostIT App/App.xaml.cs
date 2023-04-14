@@ -13,6 +13,7 @@ namespace PostIT_App
             Routing.RegisterRoute("addnote", typeof(AddNotePage));
             Routing.RegisterRoute("register", typeof(RegisterPage));
             Routing.RegisterRoute("settings", typeof(SettingsPage));
+            Routing.RegisterRoute("detailspage", typeof(DetailsPage));
             MainPage = new AppShell();
         }
     }
