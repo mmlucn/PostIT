@@ -17,6 +17,7 @@
             <CollectionView ItemsSource="{Binding Notes}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:PostItNoteDTO">
+                        
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItem Text="Delete"
@@ -37,7 +38,8 @@
                                 <Label Grid.Column="2" Text="{Binding Text}" />
                                 <Image Grid.Column="3" Source="{Binding Image.Data, Converter={StaticResource base64Converter}}"/>
                             </Grid>
-                        </SwipeView>
+                            </SwipeView>
+                        
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
