@@ -56,8 +56,9 @@ namespace PostIT_App.ViewModel
         [RelayCommand]
         private async Task Reg()
         {
-            //App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<RegisterPage>();
-            await Shell.Current.GoToAsync("register");
+            App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<RegisterPage>();
+            
+            //await Shell.Current.GoToAsync("register");
         }
     }
 }

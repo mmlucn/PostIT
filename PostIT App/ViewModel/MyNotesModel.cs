@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiLib.DTOs;
+using PostIT_App.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace PostIT_App.ViewModel
         HttpClient _httpClient;
 
         [ObservableProperty]
-        List<PostItNoteDTO> notes;
+        List<PostItNoteDTO> notes = new List<PostItNoteDTO>();
 
         [ObservableProperty]
         bool isRefreshingNotes = false;
@@ -24,12 +25,18 @@ namespace PostIT_App.ViewModel
         public MyNotesModel(HttpClient httpClient)
         {
             _httpClient = httpClient;
+
         }
 
         public async Task OnNavigatedTo()
         {
             IsRefreshingNotes = true;
             var res = await _httpClient.GetFromJsonAsync<List<PostItNoteDTO>>("api/Note");
+            if (res.Count == 0)
+            {
+                App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<AddNotePage>();
+
+            }
             Notes = res;
             IsRefreshingNotes = false;
         }
