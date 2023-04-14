@@ -1,3 +1,4 @@
+using MauiLib.DTOs;
 using MauiLib.Models;
 using PostIT_App.Helpers;
 using PostIT_App.ViewModel;
@@ -23,4 +24,7 @@ public partial class MyNotesPage : ContentPage
             await model.OnNavigatedTo();
         }
     }
+
+   
+
 }

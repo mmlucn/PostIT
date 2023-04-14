@@ -20,6 +20,9 @@ namespace PostIT_App.ViewModel
         List<PostItNoteDTO> notes = new List<PostItNoteDTO>();
 
         [ObservableProperty]
+        PostItNoteDTO postItNoteDTO;
+
+        [ObservableProperty]
         bool isRefreshingNotes = false;
 
         public MyNotesModel(HttpClient httpClient)
@@ -54,6 +57,12 @@ namespace PostIT_App.ViewModel
         private async void Delete(PostItNoteDTO note)
         {
             await AppShell.Current.DisplayAlert("Hi", "HIHI", "OK");
+        }
+
+        [RelayCommand]
+        private async Task Details(PostItNoteDTO note)
+        {
+            App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<DetailsPage>();
         }
     }
 }
