@@ -38,7 +38,7 @@ namespace PostIT_App.ViewModel
                     {
                         var token = await res.Content.ReadAsStringAsync();
                         _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                        Application.Current.MainPage = new AppShell();
+                        await Shell.Current.GoToAsync("//Home");
                     }
                     else
                     {
@@ -56,9 +56,7 @@ namespace PostIT_App.ViewModel
         [RelayCommand]
         private async Task Reg()
         {
-            App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<RegisterPage>();
-            
-            //await Shell.Current.GoToAsync("register");
+            await Shell.Current.GoToAsync("//Register");
         }
     }
 }

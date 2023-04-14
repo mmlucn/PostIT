@@ -13,7 +13,7 @@ namespace PostIT_App
         {
             var builder = MauiApp.CreateBuilder();
             HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7081/");
+            httpClient.BaseAddress = new Uri("https://cz6tk78q-7081.euw.devtunnels.ms/");
             builder.Services.AddSingleton<HttpClient>(httpClient);
 
 
@@ -31,19 +31,19 @@ namespace PostIT_App
 #endif
 
             builder.Services.AddSingleton<LoginPage>();
-            builder.Services.AddSingleton<LoginModel>();
+            builder.Services.AddTransient<LoginModel>();
 
             builder.Services.AddSingleton<RegisterPage>();
-            builder.Services.AddSingleton<RegisterModel>();
+            builder.Services.AddTransient<RegisterModel>();
 
             builder.Services.AddSingleton<MyNotesPage>();
-            builder.Services.AddSingleton<MyNotesModel>();
+            builder.Services.AddTransient<MyNotesModel>();
 
             builder.Services.AddSingleton<AddNotePage>();
-            builder.Services.AddSingleton<AddNoteModel>();
+            builder.Services.AddTransient<AddNoteModel>();
 
             builder.Services.AddSingleton<SettingsPage>();
-            builder.Services.AddSingleton<SettingsModel>();
+            builder.Services.AddTransient<SettingsModel>();
             return builder.Build();
         }
     }

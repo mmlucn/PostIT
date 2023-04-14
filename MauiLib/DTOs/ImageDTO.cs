@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MauiLib.DTOs
@@ -12,18 +13,6 @@ namespace MauiLib.DTOs
         /// Base64
         /// </summary>
         public string Data { get; set; }
-        public byte[] AsBytes
-        {
-            get
-            {
-                if (Data == null)
-                {
-                    return null;
-                }
-                return Convert.FromBase64String(Data);
-            }
-
-        }
 
         public ImageDTO(byte[] bytes)
         {

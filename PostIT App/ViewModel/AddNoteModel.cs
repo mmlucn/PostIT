@@ -60,6 +60,7 @@ namespace PostIT_App.ViewModel
         [RelayCommand]
         private async Task SaveNote()
         {
+            
             PostItNoteDTO postItNoteDTO = new PostItNoteDTO()
             {
                 Category = NoteCategory,

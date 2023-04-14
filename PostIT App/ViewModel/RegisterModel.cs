@@ -40,23 +40,23 @@ namespace PostIT_App.ViewModel
         [RelayCommand]
         private async Task Register()
         {
-            if (!string.IsNullOrEmpty(firstNameEntry) && !string.IsNullOrWhiteSpace(lastNameEntry) &&
-                !string.IsNullOrWhiteSpace(emailEntry) && !string.IsNullOrWhiteSpace(userNameEntry) &&
-                    !string.IsNullOrWhiteSpace(passwordEntry) && passwordEntry == confirmPasswordEntry)
+            if (!string.IsNullOrEmpty(FirstNameEntry) && !string.IsNullOrWhiteSpace(LastNameEntry) &&
+                !string.IsNullOrWhiteSpace(EmailEntry) && !string.IsNullOrWhiteSpace(UserNameEntry) &&
+                    !string.IsNullOrWhiteSpace(PasswordEntry) && PasswordEntry == ConfirmPasswordEntry)
             {
                 try
                 {
-                    var res = await _httpClient.PostAsJsonAsync("api/Token/Register", new UserDTO(firstNameEntry, lastNameEntry, emailEntry, userNameEntry, passwordEntry));
+                    var res = await _httpClient.PostAsJsonAsync("api/Token/Register", new UserDTO(FirstNameEntry, LastNameEntry, EmailEntry, UserNameEntry, PasswordEntry));
                     if (res.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         //AppShell er null her. Den bliver først initialiseret når man har logget ind.. Det burde nok laves anderledes
                         //await AppShell.Current.DisplayAlert("Welcome!", "Congrats!\nYou have now been registered!", "Ok");
-                        App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<LoginPage>();
+                        //App.Current.MainPage = PostIT_App.Helpers.ServiceProvider.GetService<LoginPage>();
                     }
                 }
                 catch (Exception ex)
                 {
-                    await AppShell.Current.DisplayAlert("Error", ex.Message, "Ok");
+                    //await AppShell.Current.DisplayAlert("Error", ex.Message, "Ok");
                     throw;
                 }
 

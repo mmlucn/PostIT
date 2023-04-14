@@ -4,8 +4,13 @@
              x:Class="PostIT_App.Pages.MyNotesPage"
              xmlns:models="clr-namespace:MauiLib.DTOs;assembly=MauiLib"
              xmlns:viewmodel="clr-namespace:PostIT_App.ViewModel"
+             xmlns:helpers="clr-namespace:PostIT_App.Helpers"
              x:DataType="viewmodel:MyNotesModel"
              Title="My Notes">
+
+    <ContentPage.Resources>
+        <helpers:Base64Converter x:Key="base64Converter"/>
+    </ContentPage.Resources>
 
     <RefreshView Command="{Binding RefreshNotesCommand}" IsRefreshing="{Binding IsRefreshingNotes}">
         <ScrollView>
@@ -19,6 +24,7 @@
                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DeleteCommand}"
                                        CommandParameter="{Binding}"/>
                             </SwipeView.RightItems>
+                            
                             <Grid Padding="0,5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -29,7 +35,7 @@
                                 <Label Grid.Column="0" Text="{Binding Title}"/>
                                 <Label Grid.Column="1" Text="{Binding Category}" />
                                 <Label Grid.Column="2" Text="{Binding Text}" />
-                                <Image Grid.Column="3" Source="{Binding Image.AsBytes}"/>
+                                <Image Grid.Column="3" Source="{Binding Image.Data, Converter={StaticResource base64Converter}}"/>
                             </Grid>
                         </SwipeView>
                     </DataTemplate>

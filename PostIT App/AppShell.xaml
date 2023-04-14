@@ -5,24 +5,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:PostIT_App.Pages">
 
-    <Tab Title="Note" >
-        <ShellContent
+
+    <TabBar Route="Login">
+        <ShellContent ContentTemplate="{DataTemplate pages:LoginPage}"/>
+    </TabBar>
+
+    <TabBar Route="Register">
+        <ShellContent ContentTemplate="{DataTemplate pages:RegisterPage}"/>
+    </TabBar>
+    
+    <TabBar Route="Home">
+        <Tab Title="Note" Icon="note.png">
+            <ShellContent
             Title="My notes"
             Route="mynotes"
             ContentTemplate="{DataTemplate pages:MyNotesPage}" />
-    </Tab>
-    
-    <Tab Title="New" >
-        <ShellContent
+        </Tab>
+
+        <Tab Title="New" Icon="plus.png">
+            <ShellContent
             Title="Add new note"
             Route="addnote"
             ContentTemplate="{DataTemplate pages:AddNotePage}" />
-    </Tab>
+        </Tab>
 
-    <Tab Title="Settings">
-        <ShellContent
+        <Tab Title="Settings" Icon="gear.png">
+            <ShellContent
             Title="Settings"
             Route="settings"
             ContentTemplate="{DataTemplate pages:SettingsPage}" />
-    </Tab>
+        </Tab>
+    </TabBar>
+    
 </Shell>

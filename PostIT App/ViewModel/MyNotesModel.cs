@@ -25,7 +25,6 @@ namespace PostIT_App.ViewModel
         public MyNotesModel(HttpClient httpClient)
         {
             _httpClient = httpClient;
-
         }
 
         public async Task OnNavigatedTo()
