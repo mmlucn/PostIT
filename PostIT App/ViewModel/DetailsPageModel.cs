@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MauiLib.DTOs;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,20 @@ namespace PostIT_App.ViewModel
             Id = int.Parse(temp);
             PostItNote = await _httpClient.GetFromJsonAsync<PostItNoteDTO>($"api/Note/{Id}");
         }
+        [RelayCommand]
+        private async Task DeleteNote()
+        {
+            var res = await _httpClient.DeleteAsync($"api/Note/{PostItNote.Id}");
+            if (res.IsSuccessStatusCode)
+            {
+                await Shell.Current.GoToAsync("//mynotes");
+
+            }
+
+        }
+
     }
+    
+
+
 }

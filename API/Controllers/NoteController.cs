@@ -6,6 +6,7 @@ using PostIT_API.Helpers;
 using MauiLib.Models;
 using MauiLib.DTOs;
 using Microsoft.EntityFrameworkCore;
+using Google.Api;
 
 namespace PostIT_API.Controllers
 {
@@ -89,6 +90,24 @@ namespace PostIT_API.Controllers
             }
             return BadRequest();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            
+            var itemToRemove = _context.PostItNote.SingleOrDefault(x => x.Id == id); //returns a single item.
+
+            if (itemToRemove != null)
+            {
+                _context.PostItNote.Remove(itemToRemove);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            return BadRequest();
+
+
+        }
+
 
         //[HttpPut]
         //public IActionResult Put()

@@ -1,11 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiLib.DTOs;
+using System.Data;
 using System.Net.Http.Json;
+using System.Threading;
 
 namespace PostIT_App.ViewModel
 {
-    public partial class AddNoteModel : ObservableObject
+    public partial class AddNoteModel : ObservableObject 
     {
         HttpClient _httpClient;
         ImageDTO _imageDTO = null;
@@ -62,21 +64,24 @@ namespace PostIT_App.ViewModel
         {
             
             PostItNoteDTO postItNoteDTO = new PostItNoteDTO()
-            {
+            {   
+                
                 Category = NoteCategory,
                 Title = NoteTitle,
                 Text = NoteText,
                 Image = _imageDTO
             };
 
-            var res = await _httpClient.PostAsJsonAsync<PostItNoteDTO>("/api/Note", postItNoteDTO);
+            var res = await _httpClient.PostAsJsonAsync<PostItNoteDTO>("api/Note", postItNoteDTO);
             if (res.StatusCode != System.Net.HttpStatusCode.OK)
                 await AppShell.Current.DisplayAlert("Error", res.StatusCode.ToString(), "OK");
+
 
             NoteCategory = string.Empty;
             NoteTitle = string.Empty;
             NoteText = string.Empty;
             _imageDTO = null;
         }
+        
     }
 }

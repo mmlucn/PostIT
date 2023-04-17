@@ -15,19 +15,33 @@
         <Label 
             Text="{Binding PostItNote.Title}"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            Rotation="1"
+            />
 
         <Label 
             Text="{Binding PostItNote.Category}"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            Rotation="-1"/>
 
         <Label 
             Text="{Binding PostItNote.Text}"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            Rotation="1"
+            />
 
-        <Image Source="{Binding PostItNote.Image.Data, Converter={StaticResource base64Converter}}"/>
+        
+        <Image WidthRequest="350" HeightRequest="350"  Source="{Binding PostItNote.Image.Data, Converter={StaticResource base64Converter}}" Rotation="-1 "/>
 
+        <Button
+            Text="Delete Note"
+            BackgroundColor="Red"
+            Command="{Binding DeleteNoteCommand}"
+            WidthRequest="200"
+            Rotation="1"
+            
+            />
     </VerticalStackLayout>
 </ContentPage>

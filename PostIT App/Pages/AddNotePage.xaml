@@ -43,6 +43,7 @@
             Text="Select photo"
             Margin="10"
             Command="{Binding GetPhotoCommand}"
+            
             />
 
         <Button

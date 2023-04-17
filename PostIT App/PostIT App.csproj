@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.5">
 		  <PrivateAssets>all</PrivateAssets>
@@ -73,7 +73,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.28.1" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.29.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,6 +87,9 @@
 	  <Compile Update="Pages\AddNotePage.xaml.cs">
 	    <DependentUpon>AddNotePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\ConfirmDeletePage.xaml.cs">
+	    <DependentUpon>ConfirmDeletePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -97,6 +100,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\AddNotePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ConfirmDeletePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegisterPage.xaml">

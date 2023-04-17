@@ -15,4 +15,6 @@ public partial class AddNotePage : ContentPage
         InitializeComponent();
         BindingContext = postItNoteModel;
     }
+
+    
 }
