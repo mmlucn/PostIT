@@ -62,25 +62,39 @@ namespace PostIT_App.ViewModel
         [RelayCommand]
         private async Task SaveNote()
         {
-            
+
             PostItNoteDTO postItNoteDTO = new PostItNoteDTO()
             {   
-                
-                Category = NoteCategory,
+                    Category = NoteCategory,
                 Title = NoteTitle,
                 Text = NoteText,
                 Image = _imageDTO
             };
 
-            var res = await _httpClient.PostAsJsonAsync<PostItNoteDTO>("api/Note", postItNoteDTO);
-            if (res.StatusCode != System.Net.HttpStatusCode.OK)
-                await AppShell.Current.DisplayAlert("Error", res.StatusCode.ToString(), "OK");
+            if (postItNoteDTO.Title != string.Empty && postItNoteDTO.Category != string.Empty 
+                && postItNoteDTO.Text != string.Empty)
+            {
+                var res = await _httpClient.PostAsJsonAsync<PostItNoteDTO>("api/Note?postItNote=", postItNoteDTO);
+                if (res.StatusCode != System.Net.HttpStatusCode.OK)
+                    await AppShell.Current.DisplayAlert("Error", res.StatusCode.ToString(), "OK");
+                if (res.IsSuccessStatusCode)
+                {
+                    await Shell.Current.Navigation.PopToRootAsync();
+                    NoteCategory = string.Empty;
+                    NoteTitle = string.Empty;
+                    NoteText = string.Empty;
+                    _imageDTO = null;
 
-
-            NoteCategory = string.Empty;
-            NoteTitle = string.Empty;
-            NoteText = string.Empty;
-            _imageDTO = null;
+                }
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("OOOOOPS", "all entries must be filled", "ok");
+            }
+            
+            
+           
+            
         }
         
     }

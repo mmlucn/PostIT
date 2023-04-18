@@ -36,7 +36,7 @@ namespace PostIT_App.ViewModel
             var res = await _httpClient.DeleteAsync($"api/Note/{PostItNote.Id}");
             if (res.IsSuccessStatusCode)
             {
-                await Shell.Current.GoToAsync("//mynotes");
+                await Shell.Current.Navigation.PopToRootAsync();
 
             }
 

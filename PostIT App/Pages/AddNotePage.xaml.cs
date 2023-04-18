@@ -10,7 +10,7 @@ using PostIT_App.ViewModel;
 
 public partial class AddNotePage : ContentPage
 {
-    public AddNotePage(MyNotesModel postItNoteModel)
+    public AddNotePage(AddNoteModel postItNoteModel)
     {
         InitializeComponent();
         BindingContext = postItNoteModel;
