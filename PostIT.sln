@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostIT App", "PostIT App\Po
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostIT WebApp", "PostIT WebApp\PostIT WebApp.csproj", "{99209C91-CFFB-4D33-9583-963032E2AA19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiLib", "MauiLib\MauiLib.csproj", "{D8798046-6250-462B-945B-0C60A54DCE7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiLib", "MauiLib\MauiLib.csproj", "{D8798046-6250-462B-945B-0C60A54DCE7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

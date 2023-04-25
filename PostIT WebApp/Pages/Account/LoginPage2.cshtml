@@ -1,0 +1,18 @@
+﻿@page
+@model PostIT_WebApp.Pages.Account.LoginPage2Model
+@{
+    ViewData["Title"] = "Login";
+}
+<form method="post">
+    <div class="form-group">
+
+        <label asp-for="@Model.UserName">Username</label>
+        <input asp-for="@Model.UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Password">Password</label>
+        <input asp-for="@Model.Password" placeholder="Password" type="password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+

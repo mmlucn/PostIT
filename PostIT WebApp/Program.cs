@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PostIT_App.ViewModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,9 @@ var baseAddr = builder.Configuration.GetValue<string>("WebApiBaseUrl");
 httpClient.BaseAddress = new Uri(baseAddr);
 
 builder.Services.AddSingleton(httpClient);
+builder.Services.AddScoped<LoginModel>();
+builder.Services.AddScoped<RegisterModel>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
