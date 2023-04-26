@@ -1,0 +1,45 @@
+﻿@page
+@model PostIT_WebApp.Pages.PostItNote.MyNotesPageModel
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes[0].Text)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Notes)
+        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </td>
+                       
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@item.Id">Select</a>
+                        </td>
+                    </tr>
+                
+
+            }
+        }
+    </tbody>
+</table>

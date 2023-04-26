@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PostIT_App.ViewModel;
+using PostIT_WebApp.ViewModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +16,7 @@ httpClient.BaseAddress = new Uri(baseAddr);
 builder.Services.AddSingleton(httpClient);
 builder.Services.AddScoped<LoginModel>();
 builder.Services.AddScoped<RegisterModel>();
+builder.Services.AddScoped<MyNotesModel>();
 
 var app = builder.Build();
 

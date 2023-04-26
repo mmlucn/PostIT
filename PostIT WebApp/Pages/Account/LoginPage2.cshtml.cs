@@ -2,7 +2,7 @@ using MauiLib.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PostIT_App.ViewModel;
+using PostIT_WebApp.ViewModel;
 using System.ComponentModel;
 
 namespace PostIT_WebApp.Pages.Account
@@ -37,7 +37,7 @@ namespace PostIT_WebApp.Pages.Account
                 await _loginModel.LoginCommand.ExecuteAsync(null);
                 if (_loginModel.LoginCommand.ExecutionTask.IsCompletedSuccessfully)
                 {
-                    return RedirectToPage("/Index");
+                    return RedirectToPage("/PostItNote/MyNotesPage");
                 }
                 
 

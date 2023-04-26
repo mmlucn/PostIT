@@ -11,7 +11,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PostIT_App.ViewModel
+namespace PostIT_WebApp.ViewModel
 {
     public partial class LoginModel : ObservableObject
     {

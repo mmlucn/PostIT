@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PostIT_App.ViewModel;
+using PostIT_WebApp.ViewModel;
 using System.ComponentModel;
 
 namespace PostIT_WebApp.Pages.Account
