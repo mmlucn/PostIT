@@ -1,7 +1,35 @@
 ﻿@page
 @model PostIT_WebApp.Pages.PostItNote.MyNotesPageModel
-@{
+
+
+<style>
+  .table {
+  border-collapse: collapse;
+  width: 100%;
 }
+
+.table th,
+.table td {
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #ddd;
+}
+
+
+</style>
 
 <table class="table">
     <thead>

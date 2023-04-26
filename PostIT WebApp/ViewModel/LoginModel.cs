@@ -1,4 +1,5 @@
 ﻿
+using Azure;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiLib.DTOs;
@@ -38,8 +39,8 @@ namespace PostIT_WebApp.ViewModel
                     {
                         var token = await res.Content.ReadAsStringAsync();
                         _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                        
-                    }
+                    
+                }
             }
         }
 

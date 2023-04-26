@@ -10,11 +10,11 @@ namespace PostIT_WebApp.Pages.Account
     public class LoginPage2Model : PageModel
     {
         private readonly HttpClient _httpClient;
-        public LoginModel _loginModel;
+        //public LoginModel _loginModel;
         public LoginPage2Model(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _loginModel = new LoginModel(_httpClient);
+            //_loginModel = new LoginModel(_httpClient);
             
            
         }
@@ -25,24 +25,44 @@ namespace PostIT_WebApp.Pages.Account
 
         public void OnGet()
         {
-            _loginModel = new LoginModel(_httpClient);
+            
+
+            //_loginModel = new LoginModel(_httpClient);
         }
         public async Task<IActionResult> OnPostAsync() 
         {
             if (ModelState.IsValid)
             {
-                _loginModel.UsernameEntry = UserName;
-                _loginModel.PasswordEntry = Password;
-
-                await _loginModel.LoginCommand.ExecuteAsync(null);
-                if (_loginModel.LoginCommand.ExecutionTask.IsCompletedSuccessfully)
+                var res = await _httpClient.PostAsJsonAsync("api/Token", new LoginDTO(UserName, Password));
+                if (res.StatusCode == System.Net.HttpStatusCode.OK)
                 {
+                    var token = await res.Content.ReadAsStringAsync();
+                    _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                     return RedirectToPage("/PostItNote/MyNotesPage");
+
                 }
+
                 
 
             }
             return Page();
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    _loginModel.UsernameEntry = UserName;
+            //    _loginModel.PasswordEntry = Password;
+
+            //    await _loginModel.LoginCommand.ExecuteAsync(null);
+            //    if (_loginModel.LoginCommand.ExecutionTask.IsCompletedSuccessfully)
+            //    {
+
+            //        return RedirectToPage("/PostItNote/MyNotesPage");
+            //    }
+
+
+            //}
+            //return Page();
         }
         
     }
