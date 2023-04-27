@@ -1,73 +1,124 @@
 ﻿@page
 @model PostIT_WebApp.Pages.PostItNote.MyNotesPageModel
 
-
 <style>
-  .table {
-  border-collapse: collapse;
-  width: 100%;
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .note-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 2rem;
+    }
+
+    .note-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .note-list li:hover {
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
+
+    .note-info {
+        margin-right: 2rem;
+    }
+
+    .note-info h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .note-info p {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .note-image {
+        width: 60px;
+        height: 60px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        margin-right: 2rem;
+    }
+
+    .note-actions {
+    display: flex;
+    flex-direction: column;
 }
 
-.table th,
-.table td {
-  padding: 0.5em;
-  text-align: left;
-  vertical-align: top;
-  border-bottom: 1px solid #ddd;
-}
+    .btn {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.2s ease-in-out;
+    }
 
-.table th {
-  font-weight: bold;
-}
+    .btn:hover {
+        background-color: #0069d9;
+    }
 
-.table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+    .empty-list {
+        font-style: italic;
+        color: #999;
+        margin-top: 2rem;
+    }
+    .note-actions .btn.delete {
+    background-color: #dc3545;
 }
-
-.table tbody tr:hover {
-  background-color: #ddd;
-}
-
 
 </style>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes[0].Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes[0].Text)
-            </th>
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Notes)
-        {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Text)
-                        </td>
-                       
-                        <td>
-                            <a asp-page="./Details" asp-route-id="@item.Id">Select</a>
-                        </td>
-                    </tr>
-                
-
+<div class="container">
+    <h1>My Notes</h1>
+    @if (Model.Notes.Count > 0)
+    {
+        <ul class="note-list">
+            @foreach (var note in Model.Notes)
+            {
+                <li>
+                    <div class="note-info">
+                        <h2>@note.Title</h2>
+                        <p>@note.Category</p>
+                    </div>
+                    @if (note.Image.Data != null)
+                    {
+                        <div class="note-image" style="background-image: url('data:image/png;base64,@note.Image.Data')"></div>
+                    }
+                    <div class="note-text">
+                        <p>@note.Text</p>
+                    </div>
+                    <div class="note-actions">
+                        <a class="btn" asp-page="./Details" asp-route-id="@note.Id">Details</a>
+                        <a class="btn delete" asp-page="./Delete" asp-route-id="@note.Id">Delete</a>
+                    </div>
+                </li>
             }
-        }
-    </tbody>
-</table>
+        </ul>
+    }
+    else
+    {
+        <p class="empty-list">You don't have any notes yet.</p>
+    }
+    <div class="text-right">
+        <a

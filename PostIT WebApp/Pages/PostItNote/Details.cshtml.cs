@@ -17,10 +17,10 @@ namespace PostIT_WebApp.Pages.PostItNote
 
         public async Task<IActionResult> OnGet(int id)
         {
-            var res = _httpClient.GetFromJsonAsync<PostItNoteDTO>($"api/Note/{id}");
-            if (res.IsCompletedSuccessfully)
+            var res = await _httpClient.GetFromJsonAsync<PostItNoteDTO>($"api/Note/{id}");
+            if (res.Id > 0)
             {
-                Note = res.Result;
+                Note = res;
 
             }
 
