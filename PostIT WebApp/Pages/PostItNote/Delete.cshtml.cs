@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MauiLib.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace PostIT_WebApp.Pages
 {
+    
     public class DeleteModel : PageModel
     {
         private readonly HttpClient _httpClient;
@@ -24,6 +26,13 @@ namespace PostIT_WebApp.Pages
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            bool isAuthorized = _httpClient.DefaultRequestHeaders.Contains("Authorization");
+            if (isAuthorized == false)
+            {
+                
+                return RedirectToPage("/Account/LoginPage2");
+            }
+
             if (id == null)
             {
                 return NotFound();

@@ -23,11 +23,15 @@ namespace PostIT_WebApp.Pages.Account
         [BindProperty]
         public string Password { get; set; }
 
+        
+
+
         public void OnGet()
         {
+           
             
 
-            //_loginModel = new LoginModel(_httpClient);
+
         }
         public async Task<IActionResult> OnPostAsync() 
         {
@@ -48,21 +52,6 @@ namespace PostIT_WebApp.Pages.Account
             return Page();
 
 
-            //if (ModelState.IsValid)
-            //{
-            //    _loginModel.UsernameEntry = UserName;
-            //    _loginModel.PasswordEntry = Password;
-
-            //    await _loginModel.LoginCommand.ExecuteAsync(null);
-            //    if (_loginModel.LoginCommand.ExecutionTask.IsCompletedSuccessfully)
-            //    {
-
-            //        return RedirectToPage("/PostItNote/MyNotesPage");
-            //    }
-
-
-            //}
-            //return Page();
         }
         
     }
