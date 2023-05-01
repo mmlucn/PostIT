@@ -13,42 +13,38 @@
     </ContentPage.Resources>
 
     <RefreshView Command="{Binding RefreshNotesCommand}" IsRefreshing="{Binding IsRefreshingNotes}">
-        <ScrollView>
-            <CollectionView ItemsSource="{Binding Notes}">
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Notes}" VerticalOptions="FillAndExpand" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:PostItNoteDTO">
-                        <SwipeView>
-
-                            <SwipeView.RightItems>
-                                <SwipeItem Text="Delete"
-                                       BackgroundColor="Red"
-                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DeleteCommand}"
-                                       CommandParameter="{Binding}"/>
-                            </SwipeView.RightItems>
-
-                            <SwipeView.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DetailsCommand}"
-                                    CommandParameter="{Binding Id}"/>
-                            </SwipeView.GestureRecognizers>
-
-                            <Grid Padding="0,5">
+                        <Frame BackgroundColor="#FFFFFF" Padding="10" Margin="10" CornerRadius="8" HasShadow="True">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="{Binding Title}"/>
-                                <Label Grid.Column="1" Text="{Binding Category}" />
-                                <Label Grid.Column="2" Text="{Binding Text}" />
-                                <Image Grid.Column="3" Source="{Binding Image.Data, Converter={StaticResource base64Converter}}"/>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding Title}" FontSize="Large" FontAttributes="Bold" TextColor="#333333" Margin="0,0,0,5" />
+                                <Label Grid.Column="0" Grid.Row="1" Text="{Binding Category}" FontSize="Small" FontAttributes="Bold" TextColor="#333333" Margin="0,0,0,5" />
+
+                                <Image Grid.Column="1" Grid.RowSpan="2" Source="{Binding Image.Data, Converter={StaticResource base64Converter}}" Aspect="AspectFit" HeightRequest="70" WidthRequest="70" Margin="10" />
+
+                                <Label Grid.Column="0" Grid.Row="2" Text="{Binding Text}" FontSize="Medium" TextColor="#555555" Margin="0,5,0,0" LineBreakMode="TailTruncation" />
                             </Grid>
 
-                        </SwipeView>
+                            <Frame.GestureRecognizers>
+                                <SwipeGestureRecognizer Direction="Right" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DeleteCommand}" CommandParameter="{Binding}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyNotesModel}}, Path=DetailsCommand}" CommandParameter="{Binding Id}" NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </ScrollView>
+        </StackLayout>
     </RefreshView>
 </ContentPage>
