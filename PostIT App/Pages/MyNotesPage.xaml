@@ -12,8 +12,10 @@
         <helpers:Base64Converter x:Key="base64Converter"/>
     </ContentPage.Resources>
 
-    <RefreshView Command="{Binding RefreshNotesCommand}" IsRefreshing="{Binding IsRefreshingNotes}">
-        <StackLayout>
+    <StackLayout>
+        <SearchBar Placeholder="Search..." Text="{Binding SearchTerm, Mode=TwoWay}" SearchCommand="{Binding SearchCommand}" />
+        <Button Text="Refresh all notes" Command="{Binding RefreshAllNotesCommand}" />
+        <RefreshView Command="{Binding RefreshNotesCommand}" IsRefreshing="{Binding IsRefreshingNotes}">
             <CollectionView ItemsSource="{Binding Notes}" VerticalOptions="FillAndExpand" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:PostItNoteDTO">
@@ -45,6 +47,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
-    </RefreshView>
+        </RefreshView>
+    </StackLayout>
 </ContentPage>

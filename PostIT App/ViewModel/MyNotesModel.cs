@@ -24,8 +24,11 @@ namespace PostIT_App.ViewModel
 
         [ObservableProperty]
         bool isRefreshingNotes = false;
+		[ObservableProperty]
+		string searchTerm;
 
-        public MyNotesModel(HttpClient httpClient)
+
+		public MyNotesModel(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
@@ -40,6 +43,7 @@ namespace PostIT_App.ViewModel
 
             }
             Notes = res;
+            Search();
             IsRefreshingNotes = false;
         }
 
@@ -49,6 +53,7 @@ namespace PostIT_App.ViewModel
             IsRefreshingNotes = true;
             var res = await _httpClient.GetFromJsonAsync<List<PostItNoteDTO>>("api/Note");
             Notes = res;
+            Search();
             IsRefreshingNotes = false;
         }
 
@@ -63,5 +68,31 @@ namespace PostIT_App.ViewModel
         {
             await AppShell.Current.GoToAsync($"detailspage?id={id}");
         }
-    }
+
+		[RelayCommand]
+		private async void RefreshAllNotes()
+		{
+			IsRefreshingNotes = true;
+			var res = await _httpClient.GetFromJsonAsync<List<PostItNoteDTO>>("api/Note");
+			Notes = res;
+			SearchTerm = "";
+			IsRefreshingNotes = false;
+		}
+
+		[RelayCommand]
+		private void Search()
+		{
+			if (!string.IsNullOrEmpty(SearchTerm))
+			{
+				Notes = notes.Where(note => note.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+                SearchTerm = "";
+
+			}
+			else
+			{
+				Notes = notes;
+			}
+		}
+
+	}
 }
