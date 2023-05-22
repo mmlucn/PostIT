@@ -79,12 +79,13 @@ namespace PostIT_App.ViewModel
 			IsRefreshingNotes = false;
 		}
 
+
 		[RelayCommand]
 		private void Search()
 		{
 			if (!string.IsNullOrEmpty(SearchTerm))
 			{
-				Notes = notes.Where(note => note.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+				Notes = notes.Where(note => note.Category.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
                 SearchTerm = "";
 
 			}

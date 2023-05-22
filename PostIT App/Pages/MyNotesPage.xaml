@@ -13,8 +13,8 @@
     </ContentPage.Resources>
 
     <StackLayout>
-        <SearchBar Placeholder="Search..." Text="{Binding SearchTerm, Mode=TwoWay}" SearchCommand="{Binding SearchCommand}" />
-        <Button Text="Refresh all notes" Command="{Binding RefreshAllNotesCommand}" />
+        <SearchBar Placeholder="Search..."   Text="{Binding SearchTerm, Mode=TwoWay}" SearchCommand="{Binding SearchCommand}" />
+        <Button Text="Refresh all notes" WidthRequest="150" HorizontalOptions="CenterAndExpand" Command="{Binding RefreshAllNotesCommand}" />
         <RefreshView Command="{Binding RefreshNotesCommand}" IsRefreshing="{Binding IsRefreshingNotes}">
             <CollectionView ItemsSource="{Binding Notes}" VerticalOptions="FillAndExpand" >
                 <CollectionView.ItemTemplate>
